@@ -467,32 +467,10 @@
     gap: 18px;
 }
 .pagination__button {
-    /* font-size: 26px; */
     font-size: var(--column-text-paragraph-font-size);
     font-weight: bold;
     color: var(--main-color);
     text-align: center;
-    /* inline-size: 52px;
-    block-size: 52px;
-    padding: 10px; */
-    border: 1px solid var(--main-color);
-    border-radius: 6px;
-    box-sizing: border-box;
-    cursor: pointer;
-    z-index: 1;
-    /* padding: 5px 10px;
-    margin: 0 5px;
-    cursor: pointer;
-    outline: 1px solid #494a4f;
-    border-radius: 1px;
-    border: none; */
-}
-.pagination__button.active, .pagination__button:hover {
-    background-color: var(--main-color);
-    color: var(--color);
-}
-/* ----------------btn------------- */
-/* .btn {
     inline-size: 52px;
     block-size: 52px;
     padding: 10px;
@@ -501,7 +479,21 @@
     box-sizing: border-box;
     cursor: pointer;
     z-index: 1;
-} */
+    padding: 5px 10px;
+    margin: 0 5px;
+    cursor: pointer;
+}
+.pagination__button_active, .pagination__button:hover {
+    background-color: var(--main-color);
+    color: var(--color);
+}
+@media screen and (max-width: 1440px) {
+    .pagination__button {
+        inline-size: 32px;
+        block-size: 32px;
+    }
+}
+
 /*--------------- call------------------- */
 .call {
     background-color: var(--color);
@@ -521,7 +513,6 @@
 }
 .call__image {
     /* inline-size: 460px; */
-    /* inline-size: clamp(15rem, 11.6626rem + 14.2395vw, 28.75rem); */
     inline-size: clamp(11.25rem, 7.0024rem + 18.123vw, 28.75rem);
     position: absolute;
     right: -22px;
@@ -536,9 +527,6 @@
     .call {
         grid-template-columns: 1fr;
     }
-     /* .call__images {
-        min-block-size: 180px;
-    } */
     .call__column-text {
         grid-row: 2/3;
     } 
@@ -554,7 +542,6 @@
 }
 .call__illustration {
     /* inline-size: 400px; */
-    /* inline-size: clamp(11.25rem, 7.9126rem + 14.2395vw, 25rem); */
     inline-size: clamp(7.5rem, 3.2524rem + 18.123vw, 25rem);
     position: absolute;
     left: 20px;
@@ -577,12 +564,9 @@
     top: 0; left: 0; bottom: 0; right: 0;
 }
 
-/* @media screen and (max-width: 1620px) {
-} */
 /*------------------- know ----------------------*/
 .know {
     background-color: var(--accent-color-opacity);
-    /* z-index: 3; */
 }
 .know__container {
     display: grid;
@@ -702,7 +686,6 @@
     margin: auto;
     inline-size: 100%;
     position: relative;
-    /* padding-block-end: 20px; */
 }
 .slider__items {
     inline-size: 100%;
@@ -733,6 +716,9 @@
     box-sizing: border-box;
     cursor: pointer;
     z-index: 1;
+}
+.btn:hover {
+    opacity: 0.5;
 }
 .slider__btn {
     position: absolute;
@@ -770,11 +756,7 @@
 .slider__dot_active {
     background-color: var(--main-color);
 }
-/* .slider__btn_next {
-    width: 41px;
-    cursor: pointer;
-} */
-/*  */
+
 /*------------------------ info -------------- */
 .info {
     padding-block: 0px;

@@ -224,17 +224,12 @@ function inserstCard(element) {
 // });
 
 // пагинация
-// document.addEventListener('DOMContentLoaded', function () {
-//   const cardsGroups = document.querySelector('.cards__groups');
-const pageButtons = document.querySelectorAll('.pagination__button');
+document.addEventListener('DOMContentLoaded', function () {
 // отображение кол-ва карточек на странице 
 const itemsPerPage = 4;
 // страница показанная
 let currentPage = 0;
-//колличество страниц
-let countOfItems = Math.ceil(initialCards.length / itemsPerPage);
 
-  // const items = Array.from(cardsGroups.getElementsByTagName('li')).slice(0);
 // показ страницы с карточками
 function showPage(page) {
   const startIndex = page * itemsPerPage;
@@ -244,98 +239,47 @@ function showPage(page) {
   notes.forEach(function(card){
 
     inserstCard(card);
-  });  
+  });
+  updateActiveButtonStates();  
 }
 function hideOldPage() {
   const cards = document.querySelectorAll('.card');
   cards.forEach(card => card.classList.add('hidden'));
+}
+function createPageButtons() {
+  //колличество страниц
+  let countOfItems = Math.ceil(initialCards.length / itemsPerPage);
+  const paginationButtons = document.querySelector('.pagination-buttons');
   
+  for (let i = 0; i < countOfItems; i++) {
+    let pageButton = document.createElement('button');
+    pageButton.classList.add('pagination__button');
+    pageButton.textContent = i + 1;
+    console.log(pageButton, 'pageButton-1');
+    pageButton.addEventListener('click', () => {
+      currentPage = i;
+      hideOldPage();
+      showPage(currentPage);
+      updateActiveButtonStates();
+    });
+    paginationButtons.appendChild(pageButton);
+    console.log(pageButton, 'pageButton-2', paginationButtons);
+  }
 }
-showPage(currentPage);
-for (let i = 0; i < countOfItems; i++) {
-  pageButtons.forEach((button, index) => {
-    if(index === i) {
-      button.addEventListener('click', () => {
-          currentPage = i;
-          hideOldPage();
-          showPage(currentPage);
-          updateActiveButtonStates();
-      });
-    }
-  })
-  // for (let item of pageButtons) {
-  //   item.addEventListener('click', () => {
-  //     currentPage = i;
-  //     showPage(currentPage);
-  //     updateActiveButtonStates();
-  //   });
-  // }
-}
-//TODO //TODO //TODO //TODO                 //TODO //TODO
-// let items = [];
-// for (let i = 1; i <= countOfItems; i++) {
-// 	let li = document.createElement('li');
-// 	li.innerHTML = i;
-// 	pagination.appendChild(li);
-// 	items.push(li);
-// }
-
-// showPage(items[0]);
-
-// for (let item of items) {
-// 	item.addEventListener('click', function() {
-// 		showPage(this);
-// 	});
-// }
-// for (let i = 0; i < countOfItems; i++) {
-  // const pageButton = document.createElement('button');
-  // pageButton.textContent = i + 1;
-//   pageButton.addEventListener('click', () => {
-//     currentPage = i;
-//     showPage(currentPage);
-//     updateActiveButtonStates();
-//   });
-// }
-// for (let item of pageButtons) {
-// 	item.addEventListener('click', function() {
-// 		showPage(this);
-// 	});
-// }
-
-// function createPageButtons() {
-//   const totalPages = Math.ceil(items.length / itemsPerPage);
-//   const paginationContainer = document.createElement('div');
-//   const paginationDiv = document.body.appendChild(paginationContainer);
-//   paginationContainer.classList.add('pagination');
-
-  // Add page buttons
-  // for (let i = 0; i < totalPages; i++) {
-  //   const pageButton = document.createElement('button');
-  //   pageButton.textContent = i + 1;
-  //   pageButton.addEventListener('click', () => {
-  //     currentPage = i;
-  //     showPage(currentPage);
-  //     updateActiveButtonStates();
-  //   });
-
-//       cardsGroups.appendChild(paginationContainer);
-//       paginationDiv.appendChild(pageButton);
-//     }
-// }
-//  обновление активной кнопки
 function updateActiveButtonStates() {
+  const pageButtons = document.querySelectorAll('.pagination__button');
   pageButtons.forEach((button, index) => {
+      console.log(pageButtons, button, index);
     if (index === currentPage) {
-      button.classList.add('active');
+      button.classList.add('pagination__button_active');
     } else {
-      button.classList.remove('active');
+      button.classList.remove('pagination__button_active');
     }
   });
 }
-
-//   createPageButtons(); // Call this function to create the page buttons initially
-//   showPage(currentPage);
-// });
+createPageButtons();
+showPage(currentPage);
+});
 
 // кнопка скрола вверх
 arrowTops.forEach((arrowTop) => {
@@ -347,6 +291,7 @@ arrowTops.forEach((arrowTop) => {
       arrowTop.hidden = (scrollY < document.documentElement.clientHeight);
     });
 });
+
 // для слайдера слушатели
 btnPrev.addEventListener('click', () => {
   offset = offset - 100; // offset -=  //сдвиг слайда
