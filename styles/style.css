@@ -91,6 +91,7 @@
 .logo {
     inline-size: 112px;
     /* block-size: 112px; */
+    cursor: pointer;
 }
 .logo:hover {
     opacity: 0.5;
@@ -628,9 +629,6 @@
     z-index: 1;
 }
 @media screen and (max-width: 1280px) {
-    /* .inside__container {
-        grid-template-columns: repeat(2, minmax(282px, 332px));
-    } */
     .inside__rectangle {
         margin-block-start: 75px;
         padding: 20px;
@@ -815,10 +813,8 @@
 @media screen and (max-width: 960px) {
     .info__column-text_type_left {
         padding-inline-start: 40px;
-        /* padding-inline-start: calc(((100vw - 800px) / 2)); */
     }
     .info__column-text_type_right {
-        /* padding-inline-end: calc(((100vw - 800px) / 2)); */
         padding-inline-end: 40px;
     }
 }
@@ -978,33 +974,7 @@ select {
     min-block-size: 346px;
 }
 .form__line {
-    padding-inline: calc(((100% - 1400px) / 2));
-}
-@media screen and (max-width: 1620px) {
-    .form__line {
-        padding-inline: calc(((100% - 1200px) / 2));
-    }
-}
-@media screen and (max-width: 1280px) {
-    .form__line {
-        padding-inline: calc(((100% - 1100px) / 2));
-    }
-}
-@media screen and (max-width: 1200px) {
-    .form__line {
-        padding-inline: calc(((100% - 1000px) / 2));
-    }
-}
-@media screen and (max-width: 1080px) {
-    .form__line {
-        padding-inline: calc(((100% - 900px) / 2));
-    }
-}
-@media screen and (max-width: 960px) {
-    .form__line {
-        /* padding-inline: calc(((100% - 800px) / 2)); */
-        padding-inline: 40px;
-    }
+    padding-block: 0px;
 }
 .form__line-text {
     display: flex; 
@@ -1018,7 +988,10 @@ select {
     border-bottom: 1px solid var(--main-color); 
     margin: auto;
     /* font-size: 26px; */
+}
+.form__line-span {
     font-size: var(--column-text-paragraph-font-size);
+    margin-inline: 12px;
 }
 .form__item-container {
     -webkit-box-align: center;
@@ -1026,19 +999,17 @@ select {
     -ms-flex-align: center;
     align-items: center;
 }
-.form__item {
-    inline-size: 40%;
-}
-.form__input_type_price {
-    inline-size: 90%;
-}
  .form__item-text {
-    margin-inline-start: 36px;
+    margin-inline-start: 16px;
  }
-
 .form__checkbox-item {
     margin-inline-start: auto;
 }
+@media screen and (max-width: 576px) {
+    .form__item-text {
+        margin-inline: 6px;
+     }
+ }
 /* ----------------- custom-checkbox ----------- */
 .form__checkbox {
     position: absolute;
@@ -1100,6 +1071,24 @@ select {
 }
 .form__download-text {
     margin-block-end: 12px;
+}
+.input-file {
+	position: relative;
+	display: inline-block;
+}
+.input-file span {
+	position: relative;
+	display: inline-block;
+	cursor: pointer;
+    outline: none;
+}
+.input-file input[type=file] {
+	position: absolute;
+	z-index: -1;
+	opacity: 0;
+	display: block;
+	width: 0.1px;
+	height: 0.1px;
 }
 .form__agreement-button {
     margin-block-start: 24px;

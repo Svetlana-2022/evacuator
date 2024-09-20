@@ -533,7 +533,9 @@
                         <input class="form__input" type="text" id="adress" name="adress" placeholder="Адрес стоянки эвакуатора" required>
                     </form>
                     <div class="form__line">
-                        <p class="form__line-text">ИНФОРМАЦИЯ</p>
+                        <p class="form__line-text">
+                            <span class="form__line-span">ИНФОРМАЦИЯ</span>
+                        </p>
                     </div>
                     <form class="announceme__form form form-name">
                         <label class="form__label" for="title">Заголовок объявления</label>
@@ -542,7 +544,9 @@
                         <textarea class="form__textarea" name="description" placeholder="Не более 50 символов" maxlength="50"></textarea>
                     </form>
                     <div class="form__line">
-                        <p class="form__line-text">ЦЕНЫ</p>
+                        <p class="form__line-text">
+                            <span class="form__line-span">ЦЕНЫ</span>
+                        </p>
                     </div>
                     <div class="form__line">
                         <form class="announceme__form form form-price">
@@ -602,14 +606,17 @@
                                 </div> 
                             </div>   
                         </form>
-                        <p class="form__line-text">Фото</p>
+                        <p class="form__line-text">
+                            <span class="form__line-span">Фото</span>
+                        </p>
                     </div>
                     <form class="announceme__form form form-photo">
                         <div class="form__download-item">
                             <p class="form__download-text">Прикрепите фотографию к объявлению</p>
-                            <button class="form__download-button button button-transparent">
+                            <label class="input-file  button button-transparent">
+                                <input type="file" name="file" class="form__download-button" accept="image/*, .png, .jpg, .gif, .web">		
                                 <span class="button__span-color">Загрузить</span>
-                            </button>
+                          </label>
                         </div>
                         <div>
                             <input class="form__checkbox" type="checkbox" id="agreement" name="agreement" value="agreement" />

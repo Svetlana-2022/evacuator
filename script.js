@@ -158,6 +158,7 @@ const dotPrev = document.querySelector('.slider__btn_prev-dot');
 const dotNext = document.querySelector('.slider__btn_next-dot');
 // кнопки
 const buttonAnnouncemes = document.querySelectorAll('.button-announceme');
+const logo = document.querySelector('.header__logo');
 const content = document.querySelector('.content');
 const buttonPrices1 = document.querySelector('.price__button1');
 const buttonPrices2 = document.querySelector('.price__button2');
@@ -170,13 +171,42 @@ const arrowTops = document.querySelectorAll('.arrow-top');
 const burgerOpen = document.querySelector('.header__burger');
 const burger = document.querySelector('.burger');
 const burgerClose = burger.querySelector('.burger__button');
+//////////////////////////////input-file//////.//./////Dобавить объявление. 
+const newCards = 
+  { 
+    url: "",
+    price1: "5 000 руб",
+    price2: "3 000 руб",
+    price3: "нет",
+    price4: "нет",
+    price5: "50 руб/км",
+    description: "Эвакуатор авто. Всегда на связи! Быстро и надежно"
+  };
+const inputFile = document.querySelector('.input-file');
+const divImg = document.querySelector('.div-img');
+document.querySelector('.form__download-button').addEventListener('change', function() {
+  if (this.files && this.files[0]) {
+      var reader = new FileReader();
+        reader.onload = function (e) {
+          // divImg.setAttribute('src', e.target.result);
+          newCards.url = e.target.result;
+      };
+      reader.readAsDataURL(this.files[0]);
+    }
+  });
+//////////////////////////////input-file//////////////
 
 // кнопки со слушателями
 buttonAnnouncemes.forEach((button) => {
   button.addEventListener('click', function() {
-    content.classList.toggle('content_hidden');
-    contentAnnounceme.classList.toggle('content_hidden');
+    content.classList.add('content_hidden');
+    contentAnnounceme.classList.remove('content_hidden');
   })
+});
+
+logo.addEventListener('click', function() {
+  content.classList.remove('content_hidden');
+  contentAnnounceme.classList.add('content_hidden');
 });
 
 buttonPrices2.addEventListener('click', function() {
