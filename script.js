@@ -138,15 +138,15 @@ const initialCards = [
       price5: "50 руб/км",
       description: "Эвакуатор авто. Всегда на связи! Быстро и надежно"
     },
-    { 
-      url: "./images/block-1-photo-2.jpg",
-      price1: " ",
-      price2: "3 000 руб",
-      price3: "4 000 руб",
-      price4: "6 000 руб",
-      price5: "50 руб/км",
-      description: "Круглосуточно. Стоянка в районе метро Технопарк, быстро доберусь в любую точку города."
-    },
+    // { 
+    //   url: "./images/block-1-photo-2.jpg",
+    //   price1: " ",
+    //   price2: "3 000 руб",
+    //   price3: "4 000 руб",
+    //   price4: "6 000 руб",
+    //   price5: "50 руб/км",
+    //   description: "Круглосуточно. Стоянка в районе метро Технопарк, быстро доберусь в любую точку города."
+    // },
 ];
   // для слайдера
 let offset = 0; //смещение от левого края
@@ -171,8 +171,8 @@ const arrowTops = document.querySelectorAll('.arrow-top');
 const burgerOpen = document.querySelector('.header__burger');
 const burger = document.querySelector('.burger');
 const burgerClose = burger.querySelector('.burger__button');
-//////////////////////////////input-file//////.//./////Dобавить объявление. 
-const newCards = 
+////////////////////////////////////.//./////Dобавить объявление. 
+const newCard = 
   { 
     url: "",
     price1: "5 000 руб",
@@ -182,19 +182,41 @@ const newCards =
     price5: "50 руб/км",
     description: "Эвакуатор авто. Всегда на связи! Быстро и надежно"
   };
-const inputFile = document.querySelector('.input-file');
-const divImg = document.querySelector('.div-img');
-document.querySelector('.form__download-button').addEventListener('change', function() {
+const buttonAgreement = document.querySelector('.form__agreement-button');
+const buttonDownload = document.querySelector('.form__download-button');
+// const inputFile = document.querySelector('.input-file');
+// const divImg = document.querySelector('.div-img');
+//////////////////////////////input-file//////
+buttonDownload.addEventListener('change', function() {
   if (this.files && this.files[0]) {
       var reader = new FileReader();
         reader.onload = function (e) {
-          // divImg.setAttribute('src', e.target.result);
-          newCards.url = e.target.result;
+          newCard.url = e.target.result;
       };
       reader.readAsDataURL(this.files[0]);
     }
   });
 //////////////////////////////input-file//////////////
+function updateText() {
+  const descriptionForm = document.querySelector('.form__textarea');
+  const priceForms = document.querySelectorAll('.form__input_type_price');
+    
+  priceForms.forEach((price, i) => {
+    if ( i === 0) { newCard.price1 = price.value }
+    if ( i === 1) { newCard.price2 = price.value }
+    if ( i === 2) { newCard.price3 = price.value }
+    if ( i === 3) { newCard.price4 = price.value }
+    if ( i === 4) { newCard.price5 = price.value }
+  })
+  newCard.description = descriptionForm.value;
+
+}
+buttonAgreement.addEventListener('click', function() {
+  updateText();
+  initialCards.push(newCard);
+    console.log(initialCards);
+});
+////////////////////////////////////.//./////Dобавить объявление.
 
 // кнопки со слушателями
 buttonAnnouncemes.forEach((button) => {
@@ -265,7 +287,8 @@ function showPage(page) {
   const startIndex = page * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
   let notes = initialCards.slice(startIndex, endIndex);
-  console.log(notes);
+  console.log(initialCards);
+  // console.log(notes);
   notes.forEach(function(card){
 
     inserstCard(card);
@@ -280,12 +303,13 @@ function createPageButtons() {
   //колличество страниц
   let countOfItems = Math.ceil(initialCards.length / itemsPerPage);
   const paginationButtons = document.querySelector('.pagination-buttons');
+  console.log(countOfItems, 'pageButtons');
   
   for (let i = 0; i < countOfItems; i++) {
     let pageButton = document.createElement('button');
     pageButton.classList.add('pagination__button');
     pageButton.textContent = i + 1;
-    console.log(pageButton, 'pageButton-1');
+    // console.log(pageButton, 'pageButton-1');
     pageButton.addEventListener('click', () => {
       currentPage = i;
       hideOldPage();
@@ -293,13 +317,13 @@ function createPageButtons() {
       updateActiveButtonStates();
     });
     paginationButtons.appendChild(pageButton);
-    console.log(pageButton, 'pageButton-2', paginationButtons);
+    // console.log(pageButton, 'pageButton-2', paginationButtons);
   }
 }
 function updateActiveButtonStates() {
   const pageButtons = document.querySelectorAll('.pagination__button');
   pageButtons.forEach((button, index) => {
-      console.log(pageButtons, button, index);
+      // console.log(pageButtons, button, index);
     if (index === currentPage) {
       button.classList.add('pagination__button_active');
     } else {
